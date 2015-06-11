@@ -1,0 +1,69 @@
+<!--
+      The nav bar that will be updated as we navigate between views.
+    -->
+<ion-nav-bar class="bar-stable nav-title-slide-ios7">
+    <ion-nav-back-button class="button-icon icon  ion-ios7-arrow-back">
+        Back
+    </ion-nav-back-button>
+    <div class="logout">
+        <button class="button button-stable button-assertive" ng-click="logout()" ng-hide="showLoginForm">
+            Logout
+        </button>
+    </div>
+</ion-nav-bar>
+
+<ion-view title="Restaurantes">
+      <ion-content>
+          <div class="list" ng-show="showLoginForm">
+              <label class="item item-input">
+                  <span class="input-label">Email</span>
+                  <input type="text" ng-model="em"/>
+              </label>
+              <label class="item item-input">
+                  <span class="input-label">Password</span>
+                  <input type="password" ng-model="pwd"/>
+              </label>
+              <button class="button button-block button-positive" ng-click="login(em, pwd)">
+                  Login
+              </button>
+              <button class="button button-block button-positive" ng-click="criarConta(em, pwd)">
+                  Criar conta
+              </button>
+          </div>
+
+          <div class="list" ng-hide="showLoginForm">
+              <div ng-show="isEscolhido">
+                  <div class="bar bar-header bar-balanced">
+                      <h1 class="title">O Escolhido foi "{{expenses[0].label}}"</h1>
+                  </div>
+
+                  <div class="bar bar-header bar-calm" ng-show="isEmpate">
+                      <h1 class="title">Ocorreu um empate na votação</h1>
+                  </div>
+
+                  <div class="bar bar-header bar-assertive" ng-show="isSemVoto">
+                      <h1 class="title">Não tiveram votos</h1>
+                  </div>
+
+                  <br />
+                  <br />
+              </div>
+                <ion-list>
+                  <ion-item ng-repeat="expense in expenses" type="item-text-wrap">
+                      {{expense.label}}
+                      <span class="badge badge-balanced">{{expense.cost * (-1)}}</span>
+                      <button ng-click="votar(expense)" ng-show="permissaoVotar" class="badge badge-positive votar">Votar</button>
+                  </ion-item>
+                </ion-list>
+                <div class="card assertive">
+                  <div class="item item-text-wrap">
+                      Total<span class="badge badge-positive">{{getTotal() * (-1)}}</span>
+                  </div>
+                </div>
+          </div>
+      </ion-content>
+      <ion-footer-bar ng-hide="showLoginForm">
+          <input ng-model='label' type='text' id='labelInput'  placeholder='Adicionar restaurante'>
+          <button class="button ion-plus" ng-click="addRestaurante($event)">+</button>
+      </ion-footer-bar>
+</ion-view>

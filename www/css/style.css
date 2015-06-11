@@ -1,0 +1,14 @@
+/* Empty. Add your own CSS if you like */
+.logout{
+    position: absolute;
+    right: 5px;
+}
+.badge.badge-balanced.ng-binding{
+    top: 18px;
+    right: 55px;
+}
+
+.badge.badge-positive{
+    right: 45px;
+}
+
