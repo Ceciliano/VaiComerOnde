@@ -28,7 +28,16 @@ angular.module('starter.controllers', [])
             var hora = dataAtual.getHours();
             var minutos = dataAtual.getMinutes();
 
-            return hora >= 11 && minutos >= 30;
+            if(hora > 11)
+            {
+                return true;
+            }
+            else if(hora == 11 && minutos >= 30)
+            {
+                return true;
+            }
+
+            return false;
         };
 
         $scope.expensesHoje = new Firebase(fireBaseData.refExpenses().toString()+ $scope.dataAtual());
